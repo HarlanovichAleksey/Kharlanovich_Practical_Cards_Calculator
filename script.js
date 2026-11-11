@@ -21,7 +21,7 @@ const prices = {
     }
 };
 
-// 2. Маппинг картинок (ключ — значение value из select)
+// 2. Маппинг картинок
 const imageMap = {
     "1/0": "img/1_0.png",
     "1/1": "img/1_1.png",
@@ -43,31 +43,51 @@ function calculate() {
     const paperType = paperSelect.value;
     const colorType = colorSelect.value;
 
-    if (isNaN(quantity) || quantity < 1) {
+    // Если поле пустое или введено что-то не то — считаем, что тираж 0
+    if (isNaN(quantity) || quantity < 0) {
         quantity = 0;
     }
 
+    // Вычисляем количество листов (тираж / 30)
+    // Используем Math.ceil, чтобы если ввели 35, посчиталось за 2 листа (а не за 1.16)
     const physicalSheets = Math.ceil(quantity / 30); 
 
-    const templatePrice = prices.template[colorType];
-    const paperPrice = prices.paper[paperType] * physicalSheets;
-    const printPrice = prices.print[colorType] * physicalSheets;
+    // Считаем составляющие
+    const templatePrice = prices.template[colorType] || 0;
+    const paperPrice = (prices.paper[paperType] || 0) * physicalSheets;
+    const printPrice = (prices.print[colorType] || 0) * physicalSheets;
 
     const total = templatePrice + paperPrice + printPrice;
     
-    // Выводим цену
+    // Выводим цену (округляем до 1 знака)
     totalPriceEl.textContent = Number(total.toFixed(1));
 
-    // Меняем картинку в зависимости от выбранной цветности
+    // Меняем картинку
     if (imageMap[colorType]) {
         previewImage.src = imageMap[colorType];
     }
 }
 
-// 5. Слушатели
+// 5. Обработка потери фокуса (приведение к кратному 30)
+quantityInput.addEventListener('blur', () => {
+    let val = parseInt(quantityInput.value);
+    
+    // Если пусто, меньше 30 или NaN — ставим минимальные 30
+    if (isNaN(val) || val < 30) {
+        val = 30;
+    } else {
+        // Округляем вверх до ближайшего кратного 30
+        val = Math.ceil(val / 30) * 30; 
+    }
+    
+    quantityInput.value = val;
+    calculate(); // Пересчитываем цену после изменения
+});
+
+// 6. Слушатели событий (пересчёт на лету)
 quantityInput.addEventListener('input', calculate);
 paperSelect.addEventListener('change', calculate);
 colorSelect.addEventListener('change', calculate);
 
-// 6. Первый запуск
+// 7. Первый запуск
 calculate();
