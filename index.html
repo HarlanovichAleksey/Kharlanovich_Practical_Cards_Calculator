@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор визиток</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Калькулятор визиток</h1>
+            <p class="subtitle">Рассчитайте стоимость тиража за пару кликов</p>
+        </header>
+
+        <div class="calculator-wrapper">
+            <!-- Левая часть: Форма -->
+            <div class="form-panel">
+                <h2>Расчёт стоимости</h2>
+
+                <div class="input-group">
+                    <label for="quantity">Тираж (шт.)</label>
+                    <input type="number" id="quantity" value="120" min="1" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="paper">Бумага</label>
+                    <select id="paper">
+                        <option value="melovannaya">Мелованная бумага (белая)</option>
+                        <option value="splendorgel" selected>Бумага повышенной белизны (SPLENDORGEL)</option>
+                        <option value="prestige">Prestige Лён (белый)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="color">Выберите цветность</label>
+                    <select id="color">
+                        <option value="1/0">Односторонняя чёрно-белая</option>
+                        <option value="1/1">Двусторонняя чёрно-белая</option>
+                        <option value="4/0">Односторонняя цветная</option>
+                        <option value="4/1">Цветная с лицевой, ч/б с оборотной</option>
+                        <option value="4/4" selected>Двусторонняя цветная</option>
+                    </select>
+                </div>
+
+                <div class="result-box">
+                    <p>Приблизительная стоимость за тираж</p>
+                    <div class="price"><span id="totalPrice">0</span> <span class="currency">руб.</span></div>
+                </div>
+            </div>
+
+            <!-- Правая часть: Динамическая картинка визитки -->
+            <div class="image-panel">
+                <img id="previewImage" src="img/4_4.png" alt="Пример визитки">
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

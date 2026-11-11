@@ -1,0 +1,163 @@
+/* Сброс */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body {
+    background-color: #121418; /* Глубокий тёмный фон */
+    color: #e1e3e6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 1050px;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-size: 38px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #8b92a0;
+    font-size: 16px;
+}
+
+.calculator-wrapper {
+    display: flex;
+    gap: 40px;
+    background: #1c1f26; /* Карточка чуть светлее фона */
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid #2a2e38;
+}
+
+/* Левая панель */
+.form-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-panel h2 {
+    font-weight: 500;
+    font-size: 22px;
+    margin-bottom: 30px;
+    color: #fff;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #8b92a0;
+    font-weight: 500;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: #121418;
+    border: 1px solid #2a2e38;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #fff;
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Красиво стилизуем option под темную тему */
+.input-group select option {
+    background-color: #1c1f26;
+    color: #fff;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #5c7cfa; /* Акцентный синий/индиго */
+    box-shadow: 0 0 0 3px rgba(92, 124, 250, 0.2);
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 25px;
+    background: #121418;
+    border-radius: 12px;
+    border: 1px solid #2a2e38;
+    text-align: center;
+}
+
+.result-box p {
+    font-size: 15px;
+    color: #8b92a0;
+    margin-bottom: 10px;
+}
+
+.result-box .price {
+    font-size: 36px;
+    font-weight: 700;
+    color: #5c7cfa; /* Акцентный цвет для цены */
+}
+
+.result-box .currency {
+    font-size: 20px;
+    font-weight: 500;
+    color: #8b92a0;
+}
+
+/* Правая панель */
+.image-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #121418;
+    border-radius: 12px;
+    border: 1px dashed #2a2e38;
+    padding: 20px;
+    min-height: 350px;
+}
+
+.image-panel img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+}
+
+/* Адаптив */
+@media (max-width: 850px) {
+    .calculator-wrapper {
+        flex-direction: column;
+        padding: 25px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+}
